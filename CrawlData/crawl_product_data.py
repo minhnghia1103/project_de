@@ -102,7 +102,6 @@ for pid in tqdm(p_ids, total=len(p_ids)):
     if response.status_code == 200:
         print('Crawl data {} success !!!'.format(pid))
         result.append(parser_product(response.json()))
-    time.sleep(random.randrange(3, 10))
-    break
+    time.sleep(random.randrange(2,5))
 df_product = pd.DataFrame(result)
 df_product.to_csv('crawled_data_book.csv', index=False)

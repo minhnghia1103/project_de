@@ -63,14 +63,14 @@ params = {
 }
 
 product_id = []
-for i in range(2, 3):
+for i in range(2, 100):
     params['page'] = i
     response = requests.get('https://tiki.vn/api/personalish/v1/blocks/listings', headers=headers, params=params)#, cookies=cookies)
     if response.status_code == 200:
         print(f'request success {i}!!!')
         for record in response.json().get('data'):
             product_id.append({'id': record.get('id')})
-    time.sleep(random.randrange(3, 10))
+    time.sleep(random.randrange(2,5))
 
 df = pd.DataFrame(product_id)
 df.to_csv('books_id.csv', index=False)
