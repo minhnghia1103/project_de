@@ -10,18 +10,18 @@ WITH dim_translator_book__source AS(
 , dim_translator_book__rename_column AS(
     SELECT
         id AS translator_key
-        , dich_gia AS translator_name 
+        , dich_gia AS translator
     FROM dim_translator_book__source
 )
 , dim_translator_book__cast_type AS(
     SELECT
         CAST(translator_key AS INTEGER) AS translator_key
-        , CAST(translator_name AS STRING) AS translator_name
+        , CAST(translator AS STRING) AS translator
     FROM 
         dim_translator_book__rename_column
 )
 
 SELECT 
     translator_key
-    , translator_name
+    , translator
 FROM dim_translator_book__cast_type
