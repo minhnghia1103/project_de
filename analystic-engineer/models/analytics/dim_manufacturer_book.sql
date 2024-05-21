@@ -1,7 +1,7 @@
 WITH dim_manufacturer_book__source AS(
     SELECT 
         ROW_NUMBER() OVER() AS id
-        ,manufacturer
+        , manufacturer
     FROM    
         `aesthetic-root-416403.tiki.tiki_book_data`
     WHERE manufacturer != "None"
@@ -10,18 +10,18 @@ WITH dim_manufacturer_book__source AS(
 , dim_manufacturer_book__rename_column AS(
     SELECT
         id AS manufacturer_key
-        , manufacturer AS manufacturer_name 
+        , manufacturer 
     FROM dim_manufacturer_book__source
 )
 , dim_manufacturer_book__cast_type AS(
     SELECT
         CAST(manufacturer_key AS INTEGER) AS manufacturer_key
-        , CAST(manufacturer_name AS STRING) AS manufacturer_name
+        , CAST(manufacturer AS STRING) AS manufacturer
     FROM 
         dim_manufacturer_book__rename_column
 )
 
 SELECT 
     manufacturer_key
-    , manufacturer_name
+    , manufacturer
 FROM dim_manufacturer_book__cast_type
