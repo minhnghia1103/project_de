@@ -21,3 +21,6 @@
 <img src="./image/start_schema.png">
 
 ## Data visualization and Dashboad
+
+<img src="./image/dashboad1.png">
+<img src="./image/dashboad2.png">
