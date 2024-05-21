@@ -4,6 +4,7 @@ WITH dim_date__source AS (
     FROM 
          `aesthetic-root-416403.tiki.tiki_book_data`
     WHERE publication_date IS NOT NULL
+    GROUP BY publication_date
 )
 , dim_date__enrich AS(
     SELECT
