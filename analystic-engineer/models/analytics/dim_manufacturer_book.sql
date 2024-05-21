@@ -20,8 +20,20 @@ WITH dim_manufacturer_book__source AS(
     FROM 
         dim_manufacturer_book__rename_column
 )
+, dim_manufacturer_book__add_underfined_record(
+    SELECT
+        manufacturer_key
+        , manufacturer
+    FROM 
+        dim_manufacturer_book__rename_column
+
+    UNION ALL
+    SELECT 
+    0 AS manufacturer_key
+    , 'Undefined' AS manufacturer
+)
 
 SELECT 
     manufacturer_key
     , manufacturer
-FROM dim_manufacturer_book__cast_type
+FROM dim_manufacturer_book__add_underfined_record

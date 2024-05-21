@@ -29,5 +29,5 @@ WITH dim_info_book__source AS(
 SELECT 
     book_key
     , book_name
-    , number_of_page
+    , COALESCE(number_of_page, -1) AS number_of_page
 FROM dim_info_book__cast_type
