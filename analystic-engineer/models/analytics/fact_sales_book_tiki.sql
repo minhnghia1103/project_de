@@ -41,14 +41,14 @@ WITH book_tiki__source AS (
 SELECT
     sale_id
     , book_tiki__cast_type.book_key
-    , price
-    , quantity
+    , COALESCE(price, -1) AS price
+    , COALESCE(quantity, -1) AS quantity
     , rating_average    
     , book_tiki__cast_type.publication_date
-    , gross_amount
+    , COALESCE(gross_amount, -1) AS gross_amount
     , authors_key
-    , manufacturer_key
-    , publisher_vn_key
-    , translator_key
+    , COALESCE(manufacturer_key, 0) AS manufacturer_key
+    , COALESCE(publisher_vn_key, 0) AS publisher_vn_key
+    , COALESCE(translator_key, 0) AS translator_key
 FROM book_tiki__cast_type
 LEFT JOIN {{ ref('stg_fact_info_book') }} AS face_header USING (book_key)
